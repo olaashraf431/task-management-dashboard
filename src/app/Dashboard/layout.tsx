@@ -1,21 +1,43 @@
-import React from 'react'
+import React from 'react';
+import Box from '@mui/material/Box';
+import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 
-export default function layout({children}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50 w-full">
-        {/* الجزء الخاص بال sidebar  علا  */}
-        <div className="w-64 h-full bg-white border-l border-gray-200">
-       <p className='text-gray-400 p-4'> المساحة الجانبية </p>
-        </div>
-      <div className="flex-1 flex flex-col h-full overflow-y-auto">
-        {/* الـ Navbar الخاص بكِ (ستصممينه هنا مباشرة بارتفاع ثابت) */}
+
+    <Box sx={{ display: 'flex', minHeight: '100vh', direction: 'rtl', bgcolor: '#f8f9fa' }}>
+      
+
+      <Sidebar />
+      
+
+      {/* 2. الجزء الأيسر بياخد "كل المساحة المتبقية" أوتوماتيك بفضل flexGrow: 1 */}
+      <Box 
+        sx={{ 
+          flexGrow: 1, 
+          display: 'flex', 
+          flexDirection: 'column',
+          height: '100vh',
+          overflow: 'hidden'
+        }}
+      >
+        {/* الـ Navbar فوق */}
         <Navbar />
-   <main className="p-6 flex-1">
+        
+        {/* منطقة المحتوى (المهام) تحت الـ Navbar */}
+        <Box 
+          component="main" 
+          sx={{ 
+            flexGrow: 1, 
+            p: 4, 
+            overflowY: 'auto' 
+          }}
+        >
           {children}
-        </main>
-        </div>
- 
-    </div>
-  )
+        </Box>
+      </Box>
+
+    </Box>
+  );
 }

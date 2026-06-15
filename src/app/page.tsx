@@ -1,6 +1,10 @@
 
+import { redirect } from 'next/navigation';
+
 export default function Home() {
-  return (
-     <h1 className="text-2xl font-bold text-red">ايمان يوسف </h1>
-  );
+  // أول ما الموقع يفتح، هيحول المستخدم فوراً للداشبورد
+  redirect('/Dashboard');
+ 
+    <h1 className="text-2xl font-bold text-red">ايمان يوسف </h1>
+    
 }
