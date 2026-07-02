@@ -1,10 +1,15 @@
+'use client';
 
-import { redirect } from 'next/navigation';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function Home() {
-  // أول ما الموقع يفتح، هيحول المستخدم فوراً للداشبورد
-  redirect('/Dashboard');
- 
-    <h1 className="text-2xl font-bold text-red">ايمان يوسف </h1>
-    
+export default function RootPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // أول ما الموقع يفتح، هوب يحوله على صفحة اللوجن
+    router.push('/login'); 
+  }, [router]);
+
+  return null; 
 }

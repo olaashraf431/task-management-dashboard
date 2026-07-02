@@ -3,11 +3,17 @@ import"./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "@/theme";
+import { CssBaseline } from '@mui/material';
+import Home from "./page";
+import ToastProvider from "./ToastProvider";
+import MuiThemeProvider from "./MuiThemeProvider";
+
 
 const cairoFont = Cairo({
   variable: "--font-cairo",
   subsets: ["arabic"],
 });
+
 
 export default function RootLayout({
   children,
@@ -15,17 +21,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ar" dir="rtl"
-    >
-      <body  className={`min-h-full flex flex-col ${cairoFont.className} bg-[#FDFBF7]`}>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
+    <html lang="ar" dir="rtl" className={cairoFont.variable}>
+      <body>
+        
 
-              {children}
-          </ThemeProvider>
-          
-        </AppRouterCacheProvider>
+            <AppRouterCacheProvider>
+                
+                  <MuiThemeProvider>
+
+                    <CssBaseline />
+                    
+                    <ToastProvider /> 
+
+                    <ThemeProvider theme={theme}> 
+                            {children}
+                    </ThemeProvider>
+                    
+                  </MuiThemeProvider>
+
+                
+                
+            </AppRouterCacheProvider>
+
       </body>
     </html>
   );
